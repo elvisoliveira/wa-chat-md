@@ -1,0 +1,8 @@
+<!-- The extension's icon: a chat bubble carrying the Markdown mark (M↓).
+     build.js renders the PNG sizes Chrome needs into dist/icons/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="28" fill="#1f2a30"/>
+  <path d="M30 26h68a14 14 0 0 1 14 14v40a14 14 0 0 1-14 14H58l-22 16v-16h-6a14 14 0 0 1-14-14V40a14 14 0 0 1 14-14z" fill="#25d366"/>
+  <path d="M34 78V44h9l10 13 10-13h9v34h-9V59l-10 13-10-13v19z" fill="#1f2a30"/>
+  <path d="M86 44h10v18h9L91 78 77 62h9z" fill="#1f2a30"/>
+</svg>
