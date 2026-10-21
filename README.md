@@ -1,12 +1,15 @@
 # wa-chat-md
 
-Chrome/Chromium extension (Manifest V3): the popup shows the WhatsApp Web chat
-open on screen as Markdown, with Copy and Download buttons.
+Firefox and Chrome extension (Manifest V3): the popup shows the WhatsApp Web
+chat open on screen as Markdown, with Copy and Download buttons, and keeps
+updating while it is open.
 
 It never scrolls by itself. WhatsApp Web keeps only the messages near the
 viewport in the page, so a content script collects them as they render: to get
-older messages, scroll the chat up yourself, then open the popup again.
-Switching chats starts a new collection; reloading the page forgets it.
+older messages, scroll the chat up yourself. Firefox keeps the popup open while
+you scroll the page behind it, so you watch them arrive; Chrome closes it on the
+first click on the page, so there you reopen it. Switching chats starts a new
+collection; reloading the page forgets it.
 
 ```
 # Alice
@@ -24,9 +27,17 @@ Glad you survived
 npm install
 npm run build     # or: npm run watch, rebuilding on save
 ```
-`chrome://extensions` → Developer mode → Load unpacked → `dist/`. Reload the
-WhatsApp tab once after installing. After a rebuild, hit reload on the
-extension, then on the tab.
+- **Firefox**: `about:debugging#/runtime/this-firefox` → Load Temporary Add-on
+  → `dist/manifest.json`. Temporary add-ons go away when Firefox closes; to
+  keep it, sign it (unlisted) on addons.mozilla.org, which the
+  `browser_specific_settings.gecko.id` in the manifest is for. If the popup says
+  to reload the tab and reloading doesn't help, allow the add-on on
+  web.whatsapp.com (Extensions → WA Chat MD → Permissions).
+- **Chrome**: `chrome://extensions` → Developer mode → Load unpacked → `dist/`.
+  It flags `browser_specific_settings` as an unknown key; harmless.
+
+Reload the WhatsApp tab once after installing, and after each rebuild reload
+the extension, then the tab.
 
 Building needs Node and `rsvg-convert` (librsvg), which renders the icon.
 
